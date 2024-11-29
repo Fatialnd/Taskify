@@ -1,11 +1,32 @@
 import React from "react";
-import ExampleComponent from "./components/ExampleComponent";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./pages/Dashboard";
+import TaskManager from "./pages/TaskManager";
+import GoalsTracker from "./pages/GoalsTracker";
+import Calendar from "./pages/Calendar";
+import Notes from "./pages/Notes";
+import Pomodoro from "./pages/Pomodoro";
+import Settings from "./pages/Settings";
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <ExampleComponent />
-    </div>
+    <Router>
+      <div className="flex">
+        <Sidebar />
+        <div className="flex-1 p-4">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/tasks" element={<TaskManager />} />
+            <Route path="/goals" element={<GoalsTracker />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/notes" element={<Notes />} />
+            <Route path="/pomodoro" element={<Pomodoro />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 };
 
