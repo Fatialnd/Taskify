@@ -6,7 +6,6 @@ const Sidebar: React.FC = () => {
     { path: "/", label: "Dashboard" },
     { path: "/tasks", label: "Task Manager" },
     { path: "/goals", label: "Goals Tracker" },
-    { path: "/calendar", label: "Calendar" },
     { path: "/notes", label: "Notes" },
     { path: "/pomodoro", label: "Pomodoro" },
     { path: "/settings", label: "Settings" },
