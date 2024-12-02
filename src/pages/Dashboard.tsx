@@ -1,6 +1,6 @@
 import React from "react";
 import WeatherWidget from "../components/WeatherWidget";
-import StockWidget from "../components/StockWidget"; // Import the StockWidget component
+import StockWidget from "../components/StockWidget";
 
 const Dashboard: React.FC = () => {
   return (

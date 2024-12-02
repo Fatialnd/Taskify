@@ -11,7 +11,6 @@ import {
   Legend,
 } from "chart.js";
 
-// Register chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -22,7 +21,6 @@ ChartJS.register(
   Legend
 );
 
-// Define types for stock data and time series entry
 type TimeSeriesEntry = {
   "1. open": string;
   "2. high": string;
@@ -32,16 +30,15 @@ type TimeSeriesEntry = {
 };
 
 type StockData = {
-  [symbol: string]: string[]; // key is symbol (e.g., AAPL), value is an array of prices (strings)
+  [symbol: string]: string[];
 };
 
 const StockWidget: React.FC = () => {
-  const [data, setData] = useState<StockData | null>(null); // Use StockData type
+  const [data, setData] = useState<StockData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const symbols = ["AAPL", "GOOGL", "AMZN", "NFLX", "META"]; // FAANG symbols
+  const symbols = ["AAPL", "GOOGL", "AMZN", "NFLX", "META"];
 
-  // Move the getColorForSymbol function here to avoid initialization errors
   const getColorForSymbol = (symbol: string) => {
     switch (symbol) {
       case "AAPL":
@@ -62,7 +59,7 @@ const StockWidget: React.FC = () => {
   useEffect(() => {
     const fetchStockData = async () => {
       try {
-        const stockData: StockData = {}; // Specify StockData type here
+        const stockData: StockData = {};
         const requests = symbols.map((symbol) =>
           fetch(
             `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=YOUR_API_KEY`
@@ -75,12 +72,12 @@ const StockWidget: React.FC = () => {
           const symbol = symbols[index];
           if (response["Time Series (5min)"]) {
             const timeSeries = response["Time Series (5min)"];
-            // Cast the timeSeries values to TimeSeriesEntry[] using `as`
+
             const prices = Object.values(timeSeries).map((entry) => {
-              const typedEntry = entry as TimeSeriesEntry; // Type-casting to TimeSeriesEntry
+              const typedEntry = entry as TimeSeriesEntry;
               return typedEntry["4. close"];
             });
-            stockData[symbol] = prices.reverse(); // Store the prices in reverse order
+            stockData[symbol] = prices.reverse();
           } else {
             setError(`Failed to fetch data for ${symbols[index]}`);
           }
@@ -96,9 +93,8 @@ const StockWidget: React.FC = () => {
     fetchStockData();
   }, []);
 
-  // Prepare the data for the chart
   const chartData = {
-    labels: Array.from({ length: 5 }, (_, index) => `5 min ago +${index * 5}`), // Labels for the x-axis (time in 5-minute increments)
+    labels: Array.from({ length: 5 }, (_, index) => `5 min ago +${index * 5}`),
     datasets: symbols.map((symbol) => ({
       label: symbol,
       data: data?.[symbol] || [],
