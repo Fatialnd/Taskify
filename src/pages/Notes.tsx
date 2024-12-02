@@ -25,7 +25,9 @@ const Notes: React.FC = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-extrabold text-gray-800 mb-6">Notes</h1>
+      <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">
+        Notes
+      </h1>
 
       <div className="mb-6">
         <input

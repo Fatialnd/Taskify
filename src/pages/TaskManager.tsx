@@ -61,11 +61,10 @@ const TaskManager: React.FC = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-extrabold text-gray-800 mb-6">
+      <h1 className="text-3xl font-extrabold text-gray-800 mb-6 dark:text-gray-200">
         Task Manager
       </h1>
 
-      {/* Add Task Form */}
       <div className="mb-8 p-4 bg-gray-100 rounded-lg shadow">
         <h2 className="text-xl font-semibold text-gray-700 mb-4">
           Add New Task

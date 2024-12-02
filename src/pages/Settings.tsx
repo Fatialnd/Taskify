@@ -1,26 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDarkMode } from "../context/DarkModeContext";
 
 const Settings: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode((prev) => !prev);
-    document.documentElement.classList.toggle("dark", !isDarkMode);
-  };
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-extrabold text-gray-800 mb-6">Settings</h1>
-
-      <div className="flex items-center justify-between">
-        <span className="text-lg">Dark Mode</span>
+      <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">
+        Settings
+      </h1>
+      <div className="mt-4 flex items-center">
+        <span className="text-gray-800 dark:text-gray-200 mr-4">
+          {isDarkMode ? "Dark Mode: On" : "Dark Mode: Off"}
+        </span>
         <button
           onClick={toggleDarkMode}
-          className={`px-4 py-2 ${
-            isDarkMode ? "bg-gray-800 text-white" : "bg-gray-200 text-black"
-          } rounded-lg`}
+          className="px-4 py-2 bg-blue-500 dark:bg-blue-700 text-white rounded hover:bg-blue-600 dark:hover:bg-blue-800"
         >
-          {isDarkMode ? "Disable" : "Enable"}
+          Toggle Dark Mode
         </button>
       </div>
     </div>
