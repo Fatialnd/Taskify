@@ -1,5 +1,6 @@
 import React from "react";
 import WeatherWidget from "../components/WeatherWidget";
+import StockWidget from "../components/StockWidget"; // Import the StockWidget component
 
 const Dashboard: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const Dashboard: React.FC = () => {
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <WeatherWidget />
+        <StockWidget />
       </div>
     </div>
   );
