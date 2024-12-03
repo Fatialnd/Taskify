@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GoalCard from "../components/GoalCard";
 
 interface ToDo {
@@ -15,13 +15,22 @@ interface Goal {
 }
 
 const GoalsTracker: React.FC = () => {
-  const [goals, setGoals] = useState<Goal[]>([]);
+  const [goals, setGoals] = useState<Goal[]>(() => {
+    const savedGoals = localStorage.getItem("goals");
+    return savedGoals ? JSON.parse(savedGoals) : [];
+  });
+
   const [newGoal, setNewGoal] = useState({
     title: "",
     description: "",
     toDos: [] as ToDo[],
   });
+
   const [newToDo, setNewToDo] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("goals", JSON.stringify(goals));
+  }, [goals]);
 
   const addGoal = () => {
     if (!newGoal.title) {

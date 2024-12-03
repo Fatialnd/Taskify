@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TaskCard from "../components/TaskCard";
 
 interface Task {
@@ -9,28 +9,16 @@ interface Task {
 }
 
 const TaskManager: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      id: 1,
-      title: "Complete React project",
-      dueDate: "2024-12-01",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Write documentation",
-      dueDate: "2024-12-02",
-      completed: true,
-    },
-    {
-      id: 3,
-      title: "Plan next sprint",
-      dueDate: "2024-12-05",
-      completed: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
 
   const [newTask, setNewTask] = useState({ title: "", dueDate: "" });
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const toggleTaskCompletion = (id: number) => {
     setTasks((prevTasks) =>

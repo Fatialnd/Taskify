@@ -62,7 +62,7 @@ const StockWidget: React.FC = () => {
         const stockData: StockData = {};
         const requests = symbols.map((symbol) =>
           fetch(
-            `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=YOUR_API_KEY`
+            `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=XBH0V2X4ZH2PHCS0`
           ).then((response) => response.json())
         );
 
