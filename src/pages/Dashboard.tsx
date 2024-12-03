@@ -1,6 +1,6 @@
 import React from "react";
 import WeatherWidget from "../components/WeatherWidget";
-import StockWidget from "../components/StockWidget";
+import QuotesWidget from "../components/CitiesTimeWidget";
 
 const Dashboard: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const Dashboard: React.FC = () => {
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <WeatherWidget />
-        <StockWidget />
+        <QuotesWidget />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "jsx": "react-jsx",
+    "types": ["vite/client"],
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
