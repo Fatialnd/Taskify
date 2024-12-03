@@ -81,22 +81,22 @@ const GoalsTracker: React.FC = () => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">
+    <div className="flex flex-col items-center">
+      <h1 className="text-3xl font-extrabold text-gray-800 dark:text-gray-200 mb-6">
         Goals Tracker
       </h1>
 
-      <div className="mb-8 p-4 bg-gray-100 rounded-lg shadow">
+      <div className="max-w-3xl w-full p-6 bg-gray-100 rounded-lg shadow-lg mb-8">
         <h2 className="text-xl font-semibold text-gray-700 mb-4">
           Add New Goal
         </h2>
-        <div className="flex flex-col space-y-4">
+        <div className="space-y-4">
           <input
             type="text"
             placeholder="Goal Title"
             value={newGoal.title}
             onChange={(e) => setNewGoal({ ...newGoal, title: e.target.value })}
-            className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
           />
           <textarea
             placeholder="Description (optional)"
@@ -104,7 +104,7 @@ const GoalsTracker: React.FC = () => {
             onChange={(e) =>
               setNewGoal({ ...newGoal, description: e.target.value })
             }
-            className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
           />
           <div className="flex space-x-4 items-center">
             <input
@@ -112,11 +112,11 @@ const GoalsTracker: React.FC = () => {
               placeholder="Add To-Do"
               value={newToDo}
               onChange={(e) => setNewToDo(e.target.value)}
-              className="flex-grow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-grow p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
               onClick={addToDo}
-              className="px-4 py-2 bg-blue-500 text-white rounded shadow hover:bg-blue-600"
+              className="px-6 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors"
             >
               Add To-Do
             </button>
@@ -130,14 +130,19 @@ const GoalsTracker: React.FC = () => {
           )}
           <button
             onClick={addGoal}
-            className="px-6 py-2 bg-green-500 text-white font-semibold rounded shadow hover:bg-green-600"
+            className="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow hover:bg-green-600 transition-colors"
           >
             Add Goal
           </button>
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div
+        className="max-w-3xl w-full space-y-8 overflow-y-auto"
+        style={{
+          maxHeight: "calc(100vh - 400px)",
+        }}
+      >
         {goals.map((goal) => (
           <GoalCard key={goal.id} goal={goal} onToggleToDo={toggleToDo} />
         ))}

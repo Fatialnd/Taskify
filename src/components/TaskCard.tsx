@@ -16,23 +16,31 @@ const TaskCard: React.FC<TaskCardProps> = ({
   onDelete,
 }) => {
   return (
-    <div className="flex items-center justify-between p-4 bg-gray-100 rounded shadow">
+    <div className="flex items-center justify-between p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200">
       <div>
-        <h3 className={`text-lg font-bold ${completed ? "line-through" : ""}`}>
+        <h3
+          className={`text-lg font-semibold ${
+            completed ? "line-through text-gray-500" : "text-gray-800"
+          }`}
+        >
           {title}
         </h3>
-        <p className="text-sm text-gray-500">{dueDate}</p>
+        <p className="text-sm text-gray-600">{dueDate}</p>
       </div>
       <div className="flex space-x-2">
         <button
           onClick={onToggle}
-          className="px-2 py-1 bg-blue-500 text-white rounded"
+          className={`px-4 py-2 rounded-lg text-white ${
+            completed
+              ? "bg-gray-500 hover:bg-gray-600"
+              : "bg-blue-500 hover:bg-blue-600"
+          } transition-colors`}
         >
           {completed ? "Undo" : "Complete"}
         </button>
         <button
           onClick={onDelete}
-          className="px-2 py-1 bg-red-500 text-white rounded"
+          className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
         >
           Delete
         </button>

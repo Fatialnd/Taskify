@@ -48,13 +48,14 @@ const TaskManager: React.FC = () => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-extrabold text-gray-800 mb-6 dark:text-gray-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-800 p-6 flex flex-col items-center">
+      <h1 className="text-3xl font-extrabold text-gray-800 dark:text-gray-200 mb-6">
         Task Manager
       </h1>
 
-      <div className="mb-8 p-4 bg-gray-100 rounded-lg shadow">
-        <h2 className="text-xl font-semibold text-gray-700 mb-4">
+      
+      <div className="mb-8 p-6 bg-white rounded-lg shadow-lg w-full max-w-3xl mx-auto">
+        <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
           Add New Task
         </h2>
         <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
@@ -82,8 +83,10 @@ const TaskManager: React.FC = () => {
         </div>
       </div>
 
-      <div>
-        <h2 className="text-xl font-semibold text-gray-700 mb-4">Your Tasks</h2>
+      <div className="w-full max-w-3xl mx-auto">
+        <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+          Your Tasks
+        </h2>
         {tasks.length > 0 ? (
           <div className="space-y-4">
             {tasks.map((task) => (
@@ -98,7 +101,7 @@ const TaskManager: React.FC = () => {
             ))}
           </div>
         ) : (
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-gray-400">
             No tasks available. Add a task to get started!
           </p>
         )}

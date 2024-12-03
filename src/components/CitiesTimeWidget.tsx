@@ -5,7 +5,6 @@ const cities = [
   { name: "London", timezone: "Europe/London" },
   { name: "Tokyo", timezone: "Asia/Tokyo" },
   { name: "Sydney", timezone: "Australia/Sydney" },
-  { name: "Dubai", timezone: "Asia/Dubai" },
 ];
 
 interface CityTime {
@@ -40,25 +39,25 @@ const CitiesTimeWidget: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-blue-100 via-white to-blue-50 shadow-md rounded-lg p-6 w-full">
+    <div className="bg-gradient-to-br from-blue-100 via-white to-blue-50 shadow-md rounded-lg p-6 w-full max-w-3xl mx-auto">
       <h3 className="text-xl font-bold text-blue-600 mb-4 text-center">
         World Clock
       </h3>
-      <ul className="space-y-4">
+      <div className="grid grid-cols-2 gap-6">
         {citiesTimes.map((cityTime) => (
-          <li
+          <div
             key={cityTime.city}
-            className="flex justify-between items-center p-4 bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200"
+            className="flex flex-col justify-center items-center p-4 bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200"
           >
             <span className="font-semibold text-gray-800 text-lg">
               {cityTime.city}
             </span>
-            <span className="font-mono text-blue-500 text-xl">
+            <span className="font-mono text-blue-500 text-base">
               {cityTime.time}
             </span>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

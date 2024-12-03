@@ -39,28 +39,33 @@ const Notes: React.FC = () => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">
+    <div className="p-6 max-w-4xl mx-auto">
+      <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-6">
         Notes
       </h1>
 
-      <div className="mb-6">
-        <input
-          type="text"
-          placeholder="Write a new note..."
-          value={newNote}
-          onChange={(e) => setNewNote(e.target.value)}
-          className="p-2 border border-gray-300 rounded w-full"
-        />
-        <button
-          onClick={addNote}
-          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Add Note
-        </button>
+      <div className="mb-6 space-y-4">
+        <div className="flex items-center space-x-4">
+          <input
+            type="text"
+            placeholder="Write a new note..."
+            value={newNote}
+            onChange={(e) => setNewNote(e.target.value)}
+            className="p-3 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            onClick={addNote}
+            className="px-3 text-s whitespace-nowrap bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            style={{
+              height: "calc(1.75rem + 1.5rem)",
+            }}
+          >
+            Add Note
+          </button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {notes.map((note) => (
           <NoteCard
             key={note.id}

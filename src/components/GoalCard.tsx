@@ -25,11 +25,11 @@ const GoalCard: React.FC<GoalCardProps> = ({ goal, onToggleToDo }) => {
     goal.toDos.length > 0 ? (completedCount / goal.toDos.length) * 100 : 0;
 
   return (
-    <div className="p-4 border rounded-lg shadow bg-white">
-      <h3 className="text-lg font-bold">{goal.title}</h3>
+    <div className="p-6 bg-white rounded-lg shadow-lg">
+      <h3 className="text-xl font-semibold text-gray-800">{goal.title}</h3>
       <p className="text-gray-600 mb-2">{goal.description}</p>
       <ProgressBar progress={progress} />
-      <ul className="list-none mt-4">
+      <ul className="list-none mt-4 space-y-2">
         {goal.toDos.map((toDo) => (
           <li key={toDo.id} className="flex items-center space-x-4">
             <input
@@ -39,7 +39,9 @@ const GoalCard: React.FC<GoalCardProps> = ({ goal, onToggleToDo }) => {
               className="w-5 h-5"
             />
             <span
-              className={toDo.completed ? "line-through text-gray-500" : ""}
+              className={
+                toDo.completed ? "line-through text-gray-500" : "text-gray-700"
+              }
             >
               {toDo.title}
             </span>
