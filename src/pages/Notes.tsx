@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import NoteCard from "../components/NoteCard";
 
 interface Note {
   id: string;
@@ -6,8 +7,16 @@ interface Note {
 }
 
 const Notes: React.FC = () => {
-  const [notes, setNotes] = useState<Note[]>([]);
+  const [notes, setNotes] = useState<Note[]>(() => {
+    const savedNotes = localStorage.getItem("notes");
+    return savedNotes ? JSON.parse(savedNotes) : [];
+  });
+
   const [newNote, setNewNote] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   const addNote = () => {
     if (newNote.trim()) {
@@ -21,6 +30,12 @@ const Notes: React.FC = () => {
 
   const deleteNote = (id: string) => {
     setNotes((prev) => prev.filter((note) => note.id !== id));
+  };
+
+  const updateNote = (id: string, content: string) => {
+    setNotes((prev) =>
+      prev.map((note) => (note.id === id ? { ...note, content } : note))
+    );
   };
 
   return (
@@ -47,28 +62,12 @@ const Notes: React.FC = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {notes.map((note) => (
-          <div
+          <NoteCard
             key={note.id}
-            className="relative bg-yellow-100 text-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl"
-          >
-            <textarea
-              value={note.content}
-              onChange={(e) =>
-                setNotes((prev) =>
-                  prev.map((n) =>
-                    n.id === note.id ? { ...n, content: e.target.value } : n
-                  )
-                )
-              }
-              className="w-full h-24 bg-transparent resize-none outline-none"
-            />
-            <button
-              onClick={() => deleteNote(note.id)}
-              className="absolute top-2 right-2 text-black text-sm"
-            >
-              ✖
-            </button>
-          </div>
+            note={note}
+            onDelete={deleteNote}
+            onUpdate={updateNote}
+          />
         ))}
       </div>
     </div>
