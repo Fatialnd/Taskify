@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
       </h1>
 
       <div className="flex flex-row gap-6 flex-wrap justify-center w-full max-w-9xl">
-        <div className="w-full sm:w-1/2 lg:w-1/2 xl:w-1/4 p-4">
+        <div className="w-full sm:w-1/2 lg:w-1/4 xl:w-1/4 p-4">
           <div className="w-full h-full flex flex-col gap-6">
             <WeatherWidget />
             <NotesWidget notes={notes} />

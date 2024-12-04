@@ -47,7 +47,7 @@ const CitiesTimeWidget: React.FC = () => {
         {citiesTimes.map((cityTime) => (
           <div
             key={cityTime.city}
-            className="flex flex-col justify-center items-center p-4 bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200"
+            className="flex flex-col justify-center items-center p-2 bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200"
           >
             <span className="font-semibold text-gray-800 text-lg">
               {cityTime.city}
