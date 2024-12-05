@@ -97,7 +97,6 @@ const Pomodoro: React.FC = () => {
           </div>
         ) : (
           <div className="flex flex-col items-center space-y-6">
-            {/* Circular Progress Bar Centering */}
             <div className="w-72 h-72 flex items-center justify-center mb-6">
               <CircularProgressBar
                 timeLeft={timeLeft}
